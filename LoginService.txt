@@ -1,0 +1,16 @@
+title Login Service
+
+    participant Client
+    participant Server
+
+    Client->>Server: 1. POST /authenticate (username, password)
+    activate Server
+    Server-->>Server: 2. Validate credentials, generate JWT (secret key)
+    Server-->>Client: 3. JWT
+    deactivate Server
+
+    Client->>Server: 4. GET /data (JWT in Header)
+    activate Server
+    Server-->>Server: 5. Validate JWT (secret key)
+    Server-->>Client: 6. Response
+    deactivate Server
